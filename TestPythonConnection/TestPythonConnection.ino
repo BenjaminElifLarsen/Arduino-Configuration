@@ -1,7 +1,5 @@
-long oldValue = 0; 
-long newValue = 0; 
-long delayValue = 0;
-long thresholdValue = 0;
+int delayValue = 0;
+int thresholdValue = 0;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -9,6 +7,7 @@ void setup() {
   //delayValue = Serial.parseInt();
   //while(!Serial.available());
   //thresholdValue = Serial.parseInt();
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
@@ -29,14 +28,19 @@ void loop() {
     }
     if(text[0] == 'T'){
       thresholdValue = atoi(value);
+      //analogWrite(LED_BUILTIN,thresholdValue);
     }else if(text[0] == 'D'){
       delayValue = atoi(value);
+      //analogWrite(LED_BUILTIN,delayValue);
     }
-    delay(1000);
-    Serial.write(value,6);
+    //Serial.write(value,6);
   }
+  int test1 = thresholdValue;
+  int test2 = delayValue;
+  Serial.print(test1);
+  Serial.print(test2);
   //Serial.write("abcABC",6);
   //delay(1000);
-  Serial.write("In Prgs",6);
+  //Serial.write("In Prgs",6);
   delay(1000);
 }
