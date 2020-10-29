@@ -22,25 +22,11 @@ ser = serial.Serial()
 ser.baudrate = 9600
 ser.port = port
 ser.open()
-print(str(ser))
-i = 0
-ser.write(0)
-text = ser.read(6)
 ser.write(bytes("D" + str(delayValue), 'ascii'))
 print('Transmitted Delay')
-print("D" + str(delayValue) + "!")
-#text = ser.read(6)
-#print("Test: " + str(text[0]) + ' ' + str(text[1]) + ' ' + str(text[2]) + ' ' + str(text[3]) + ' ' + str(text[4]) + ' ' + str(text[5]))  #text.decode('utf-8')
 time.sleep(2);
 ser.write(bytes("T" + str(threshold), 'ascii'))
-print("T" + str(threshold) + "!");
 print('Transmitted Threshold')
-#text = ser.read(6)
-#print("Test: " + str(text[0]) + ' ' + str(text[1]) + ' ' + str(text[2]) + ' ' + str(text[3]) + ' ' + str(text[4]) + ' ' + str(text[5]))  #text.decode('utf-8')
-#while True:
-# text = ser.read(6)
-# i += 1
-# print("Test: " + str(text[0]) + ' ' + str(text[1]) + ' ' + str(text[2]) + ' ' + str(text[3]) + ' ' + str(text[4]) + ' ' + str(text[5]))  #text.decode('utf-8')
 ser.close()
 
 
