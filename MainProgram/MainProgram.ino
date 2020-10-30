@@ -1,5 +1,5 @@
 int analogPin = A0;
-int groundPin = 13
+int groundPin = 13;
 
 int delayValue = 0;
 int thresholdLevel = 0;
@@ -10,9 +10,11 @@ void setup() {
   analogReference(INTERNAL);
   Serial.begin(9600);
   pinMode(groundPin, OUTPUT);
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
+
   value = analogRead(analogPin);
   if(value <= thresholdLevel) //state changes on input
   {
@@ -29,14 +31,25 @@ void loop() {
   if(Serial.available()) //configuration part. 
   {
     String text = Serial.readString();
-    char value[(text.length())-1];
-    for(int i = 1; i < text.length(); i++){
-      value[i-1] = text[i];
+      analogWrite(LED_BUILTIN,200);
+    if(text[0] == 'A')
+    {
+      delay(2000);
+      Serial.write("I AM HERE",9);
     }
-    if(text[0] == 'T'){
-      thresholdLevel = atoi(value);
-    }else if(text[0] == 'D'){
-      delayValue = atoi(value);
+    else
+    {
+      char value[(text.length())-1];
+      for(int i = 1; i < text.length(); i++){
+        value[i-1] = text[i];
+      }
+      if(text[0] == 'T'){
+        thresholdLevel = atoi(value);
+      }
+      if(text[0] == 'D'){
+        delayValue = atoi(value);
+      }
+      delay(1000);
     }
   }
 }
