@@ -1,8 +1,8 @@
 int analogPin = A0;
 int groundPin = 13;
 
-int delayValue = 0;
-int thresholdLevel = 0;
+int delayValue = 200;
+int thresholdLevel = 20;
 int value = 0;
 int del = 0;
 
@@ -16,17 +16,18 @@ void setup() {
 void loop() {
 
   value = analogRead(analogPin);
+  Serial.println(value);
   if(value <= thresholdLevel) //state changes on input
   {
     if(del + delayValue < millis())
     {
       digitalWrite(groundPin, LOW);
     }
-    else
-    {
-      del = millis();
-      digitalWrite(groundPin, HIGH);
-    }
+  }
+  else
+  {
+    del = millis();
+    digitalWrite(groundPin, HIGH);
   }
   if(Serial.available()) //configuration part. 
   {

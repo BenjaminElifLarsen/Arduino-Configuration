@@ -28,7 +28,7 @@ if len(sys.argv) != 4: #if no arguments are given, it should display all com por
              if len(response) > 0:
               portList.append("{}".format(str(p.description))) 
              testSer.close()
-    for text in portList:
+     for text in portList:
         print(str(text))
     exit(-1)
 port = ''

@@ -19,7 +19,7 @@ void loop() { //if microphone feedback is off some noise is present.
   {
     Serial.println(0);
 
-    if (del + 100 < millis() )
+    if (del + 200 < millis() )
     {
       digitalWrite(groundPin, LOW);
     }
